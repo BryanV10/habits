@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario de Actividades</title>
+</head>
+<body>
+    <h1>Calendario de Actividades</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Hora de Inicio</th>
+                <th>Actividad</th>
+                <th>Duración Real</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for registro in registros %}
+            <tr>
+                <td>{{ registro.calendario.fecha }}</td>
+                <td>{{ registro.hora_inicio }}</td>
+                <td>{{ registro.actividad.nombre }}</td>
+                <td>{{ registro.duracion_real }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
