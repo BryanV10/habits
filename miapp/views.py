@@ -1,10 +1,15 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Actividad,RegistroActividad
 
 # Create your views here.
 def inicio(request):
-    #registros=list(RegistroActividad.oject.values())
-    return render(request, "index.html")
+    #registrospython=list(RegistroActividad.objects.values())
+    registrospython=RegistroActividad.objects.all()
+    #actividades=Actividad.objects.all()
+    return render(request, "index.html",{
+        'registros':registrospython
+    })
 
 def hola(request):
     return HttpResponse("Hola Mundo")
