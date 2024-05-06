@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
+from django.contrib.auth.forms import UserCreationForm
 from .models import RegistroActividad,Actividad
 from .forms import RegistroActividadForm,ActividadForm
 
@@ -11,6 +12,11 @@ def inicio(request):
     #actividades=Actividad.objects.all()
     return render(request, "index.html",{
         'registros':registrospython
+    })
+
+def signup(request):
+    return render(request,'signup.html',{
+        'formulario': UserCreationForm
     })
 
 def crudRegistro(request):
