@@ -45,6 +45,8 @@ def agregar_actividad(request):
         form = ActividadForm()
     return render(request, 'crudActividad.html', {'formulario': form})
 
+
+
 def hola(request):
     return render (request, "base.html")
 
