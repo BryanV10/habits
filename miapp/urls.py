@@ -8,6 +8,8 @@ urlpatterns=[
     path('home/',views.inicio,name='home'),
     path('registros/',views.agregar_registro_actividad,name='registroactividad'),
     path('actividad/',views.agregar_actividad,name='crearactividad'),
-    path('signup/',views.signup,name='signup'),
+    path('signup/',views.signup),
+    path('signin/',views.signin),
+    path('signout/',views.signout),
 
 ]
