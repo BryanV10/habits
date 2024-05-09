@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendario de Actividades</title>
+    
+
     {% load bootstrap5 %}
     {% bootstrap_css %}
-    {% bootstrap_javascript %}    
+    {% bootstrap_javascript %} 
+    
+    
 </head>
 
 
@@ -37,9 +41,9 @@
                       </li>
                      
 
-                    {% if user.is_authenticated %}
+                    {% if user.is_authenticated and not "/admin/" in request.path %}
                     <li class="nav-item">
-                        <a class="nav-link" href="/logout">logout</a>
+                        <a class="nav-link" href="/signout">logout</a>
                     </li>
                     {% else %}
                     <li class="nav-item">
