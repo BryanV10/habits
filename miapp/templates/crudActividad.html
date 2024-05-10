@@ -2,11 +2,22 @@
 
 {% block content%}
 
-<h1> Registro de Actividad</h1>
+
+
+<div class="container col-5">
+    <h1> Formulario de Actividad</h1>
 <form method="post">
+
+
+
     {% csrf_token %}
-    {{ formulario.as_p }}
-    <button type="submit">Guardar</button>
+    
+        {{ formulario.as_p }}    
+    
+    
+    
+    <button type="submit" class="btn btn-primary">Guardar</button>
 </form>
+</div>
 
 {% endblock %}

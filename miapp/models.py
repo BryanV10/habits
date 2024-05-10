@@ -18,18 +18,12 @@ class Actividad(models.Model):
     def __str__(self):
         return self.nombre
     
-class Calendario(models.Model):
-    fecha = models.DateField(unique=True)
-    dia_semana = models.CharField(max_length=20, choices=[('lunes', 'Lunes'), ('martes', 'Martes'), ('miércoles', 'Miércoles'), ('jueves', 'Jueves'), ('viernes', 'Viernes'), ('sábado', 'Sábado'), ('domingo', 'Domingo')])
-
-    def __str__(self):
-        return str(self.fecha)
 
 class RegistroActividad(models.Model):
-    actividad = models.ForeignKey('Actividad', on_delete=models.CASCADE)
-    calendario = models.ForeignKey('Calendario', on_delete=models.CASCADE)
+    actividad = models.ForeignKey('Actividad', on_delete=models.CASCADE)    
+    calendario=models.DateField()
     hora_inicio = models.TimeField(default=timezone.now)
     duracion_real = models.DurationField()
 
     def __str__(self):
-        return f"{self.actividad.nombre} - {self.calendario.fecha} - {self.hora_inicio}"
+        return f"{self.actividad.nombre} - {self.calendario} - {self.hora_inicio}"
