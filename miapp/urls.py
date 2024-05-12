@@ -11,5 +11,6 @@ urlpatterns=[
     path('signup/',views.signup),
     path('signin/',views.signin),
     path('signout/',views.signout),
+    path('calendar/',views.calendar),
 
 ]

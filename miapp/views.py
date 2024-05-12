@@ -9,11 +9,28 @@ from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 # Create your views here.
 def inicio(request):
     #registrospython=list(RegistroActividad.objects.values())
-    registrospython=RegistroActividad.objects.all()
+    registrospython=RegistroActividad.objects.all().order_by('calendario')
     #actividades=Actividad.objects.all()
     return render(request, "index.html",{
         'registros':registrospython
     })
+
+def calendar(request):
+    
+    registrospython=RegistroActividad.objects.all().order_by('calendario')    
+    """return render(request, "calendario.html",{
+        'registros':registrospython    })"""
+
+    eventos_json = []
+    for evento in registrospython:
+        eventos_json.append({
+            'title': evento.actividad,
+            'start': evento.calendario.isoformat(),
+            'end': evento.calendario.isoformat()
+        })
+    return render(request, 'calendario.html', {'eventos_json': eventos_json,'registros':registrospython})
+
+
 
 def signup(request):
     if request.method == 'POST':
@@ -51,7 +68,7 @@ def agregar_registro_actividad(request):
         form = RegistroActividadForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/about')  # Redirige a donde desees después de agregar el registro
+            return redirect('/home')  # Redirige a donde desees después de agregar el registro
     else:
         form = RegistroActividadForm()
     return render(request, 'crudRegistro.html', {'formulario': form})
@@ -61,7 +78,7 @@ def agregar_actividad(request):
         form = ActividadForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/about')  # Redirige a donde desees después de agregar el registro
+            return redirect('/home')  # Redirige a donde desees después de agregar el registro
     else:
         form = ActividadForm()
     return render(request, 'crudActividad.html', {'formulario': form})

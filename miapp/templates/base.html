@@ -7,10 +7,9 @@
     
     {% load bootstrap5 %}
     {% bootstrap_css %}
-    {% bootstrap_javascript %}  
+    {% bootstrap_javascript %} 
     
 </head>
-
 
 <body>
     <!-- Header -->
@@ -31,6 +30,9 @@
                       <li class="nav-item">
                           <a class="nav-link" href="/home">Home</a>
                       </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="/calendar">Calendario</a>
+                    </li>
                       <li class="nav-item">
                           <a class="nav-link" href="/registros">Registros</a>
                       </li>
@@ -81,6 +83,7 @@
       </div>
   </nav>
   <!-- Close Header -->
+  
 
 {% block content %}
 {% endblock %}

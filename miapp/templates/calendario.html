@@ -1,8 +1,27 @@
 
-{% extends 'base.html' %}
-    {% block content %}
 
-    
+{% extends 'base.html' %}
+{% block content %}
+
+   
+
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
+<script>
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendarioActividades');
+    /*var eventos_json = '{{ registros|escapejs }}';
+    var eventos = JSON.parse(eventos_json);*/
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'dayGridMonth',
+      //events:  eventos
+    });
+    calendar.render();
+  });
+
+</script>
+
+<div id="calendarioActividades"></div>    
     <h1>Actividades</h1>
     <table class="table">
         <thead>

@@ -22,7 +22,7 @@ class RegistroActividadForm(forms.ModelForm):
         fields = ['actividad', 'calendario', 'hora_inicio', 'duracion_real']
         widgets = {
             'actividad': forms.Select(attrs={'class': 'form-control'}),
-            'calendario': forms.DateInput(attrs={'type': 'date','class': 'form-control'})
+            'calendario': forms.DateInput(attrs={'type': 'date','class': 'form-control'}),
         }
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
