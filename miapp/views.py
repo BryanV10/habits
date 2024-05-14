@@ -5,6 +5,7 @@ from .models import RegistroActividad,Actividad
 from .forms import RegistroActividadForm,ActividadForm
 from django.contrib.auth import login,logout
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
+import json
 
 # Create your views here.
 def inicio(request):
@@ -20,7 +21,21 @@ def calendar(request):
     registrospython=RegistroActividad.objects.all().order_by('calendario')    
     """return render(request, "calendario.html",{
         'registros':registrospython    })"""
+    
+    #eventos = [{'title': acto.actividad, 'start': acto.calendario.strftime('%Y-%m-%d'), 'end': acto.calendario.strftime('%Y-%m-%d')} for acto in registrospython]
+    #eventos_json = json.dumps(eventos)
 
+    """eventos = []
+    for acto in registrospython:
+        evento = {
+            'title': acto.actividad,
+            'start': acto.calendario.strftime('%Y-%m-%d'),
+            'end': acto.calendario.strftime('%Y-%m-%d')
+        }
+        eventos.append(evento)
+    eventos_json = json.dumps(eventos)
+
+    """
     eventos_json = []
     for evento in registrospython:
         eventos_json.append({
@@ -28,7 +43,8 @@ def calendar(request):
             'start': evento.calendario.isoformat(),
             'end': evento.calendario.isoformat()
         })
-    return render(request, 'calendario.html', {'eventos_json': eventos_json,'registros':registrospython})
+        #eventos_jso=json.dumps(eventos_json)
+    return render(request, 'calendario.html', {'eventos_json': eventos_json})
 
 
 

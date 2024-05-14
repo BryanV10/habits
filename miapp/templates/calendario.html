@@ -3,47 +3,31 @@
 {% extends 'base.html' %}
 {% block content %}
 
-   
-
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
 <script>
 
   document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendarioActividades');
-    /*var eventos_json = '{{ registros|escapejs }}';
-    var eventos = JSON.parse(eventos_json);*/
+    var hola = "{{ eventos_json }}";
+    console.log(hola);
+    var miVariable = document.getElementById('actscalendario').getAttribute('data-mi-variable');
+    var eventos = JSON.parse(calendarEl.getAttribute('data-mi-variable'));
+    console.log(miVariable);
+    console.log(eventos)
+    /*var eventos = JSON.parse(hola);
+    console.log(eventos);*/
+
     var calendar = new FullCalendar.Calendar(calendarEl, {
       initialView: 'dayGridMonth',
-      //events:  eventos
+      events:  miVariable
     });
     calendar.render();
   });
 
 </script>
 
+<h1 id="actscalendario" data-mi-variable="{{ eventos_json }}"></h1>
 <div id="calendarioActividades"></div>    
-    <h1>Actividades</h1>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Fecha</th>
-                <th>Hora de Inicio</th>
-                <th>Actividad</th>
-                <th>Duración</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for registro in registros %}
-            <tr>
-                <td>{{ registro.calendario }}</td>
-                <td>{{ registro.hora_inicio }}</td>
-                <td>{{ registro.actividad.nombre }}</td>
-                <td>{{ registro.duracion_real }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
     
 
 {% endblock %}
