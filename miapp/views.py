@@ -39,12 +39,25 @@ def calendar(request):
     eventos_json = []
     for evento in registrospython:
         eventos_json.append({
-            'title': evento.actividad,
+            #'title': evento.actividad,
+            'title': evento.actividad.nombre,
             'start': evento.calendario.isoformat(),
             'end': evento.calendario.isoformat()
         })
-        #eventos_jso=json.dumps(eventos_json)
-    return render(request, 'calendario.html', {'eventos_json': eventos_json})
+        eventos_jso=json.dumps(eventos_json)
+    eventos=str(eventos_jso).strip('[]')
+    print(eventos_json)
+    print(eventos_jso)
+    print('holabola')
+    #for e in eventos_json:
+    print(eventos_json[2]['title'])
+    print(eventos_json[2]['start'])
+    print(eventos_json[2]['end'])
+
+    #eventos_json = list(RegistroActividad.objects.all().values())
+    #eventos_json_str = json.dumps(eventos_json)  
+    
+    return render(request, 'calendario.html', {'eventos_json': eventos_jso,'registros':registrospython})
 
 
 

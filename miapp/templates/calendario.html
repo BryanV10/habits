@@ -7,27 +7,77 @@
 <script>
 
   document.addEventListener('DOMContentLoaded', function() {
-    var calendarEl = document.getElementById('calendarioActividades');
-    var hola = "{{ eventos_json }}";
-    console.log(hola);
-    var miVariable = document.getElementById('actscalendario').getAttribute('data-mi-variable');
-    var eventos = JSON.parse(calendarEl.getAttribute('data-mi-variable'));
-    console.log(miVariable);
-    console.log(eventos)
-    /*var eventos = JSON.parse(hola);
-    console.log(eventos);*/
 
+/*    const calendarEl = document.getElementById('calendarioActividades');
+    const eventosJson = JSON.parse("{{ eventos_json | safe }}"); // parse JSON data from Django
+
+    try {
+    const parsedData = JSON.parse(eventosJson);
+    const calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'dayGridMonth',
+      events: parsedData
+    });
+    calendar.render();
+  } catch (e) {
+    console.error("Invalid JSON data:", e);
+  }
+});*/
+
+
+    var calendarEl = document.getElementById('calendarioActividades');
+    //var hola = "{{ eventos_json }}";
+    //console.log(hola);
+    var miVariable = document.getElementById('actscalendario').getAttribute('data-mi-variable');
+    //var miVariable = "{{ registros }}";
+    console.log(miVariable)
+    console.log(typeof miVariable)
+    
+    var jsonString = '[{"title": "Juan", "start": "2024-05-04", "end": "2024-05-04"},{"title": "Pedro", "start": "2024-05-05", "end": "2024-05-07"}]';
+    
+    var objetoJSON = JSON.parse(miVariable);
+    console.log( objetoJSON);
+    console.log( typeof objetoJSON);
+
+    
     var calendar = new FullCalendar.Calendar(calendarEl, {
       initialView: 'dayGridMonth',
-      events:  miVariable
+      events:  objetoJSON
+     /* [{
+        'title':'hola',
+        'start':'2024-05-01'
+      }]*/
+    
     });
+
     calendar.render();
   });
 
 </script>
 
 <h1 id="actscalendario" data-mi-variable="{{ eventos_json }}"></h1>
-<div id="calendarioActividades"></div>    
-    
+<div id="calendarioActividades"></div>
 
+<table class="table">
+  <thead>
+      <tr>
+          <th>Fecha</th>
+          <th>Hora de Inicio</th>
+          <th>Actividad</th>
+          
+      </tr>
+  </thead>
+  <tbody>
+      {% for registro in registros %}
+      <tr>
+          <td>{{ registro.actividad.nombre }}</td>
+          <td>{{ registro.calendario }}</td>
+          <td>{{ registro.calendario }}</td>
+          
+      </tr>
+      {% endfor %}
+  </tbody>
+</table>
+
+
+          
 {% endblock %}
