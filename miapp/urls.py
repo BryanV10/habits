@@ -12,5 +12,6 @@ urlpatterns=[
     path('signin/',views.signin),
     path('signout/',views.signout),
     path('calendar/',views.calendar),
+    path('daycalendar/',views.calendariodiario),
 
 ]
