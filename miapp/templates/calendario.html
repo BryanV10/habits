@@ -1,5 +1,4 @@
 
-
 {% extends 'base.html' %}
 {% block content %}
 
@@ -45,28 +44,5 @@
 
 <h1 id="actscalendario" data-mi-variable="{{ eventos_json }}"></h1>
 <div id="calendarioActividades"></div>
-
-<table class="table">
-  <thead>
-      <tr>
-          <th>Fecha</th>
-          <th>Hora de Inicio</th>
-          <th>Actividad</th>
-          
-      </tr>
-  </thead>
-  <tbody>
-      {% for registro in registros %}
-      <tr>
-          <td>{{ registro.actividad.nombre }}</td>
-          <td>{{ registro.calendario }}</td>
-          <td>{{ registro.calendario }}</td>
-          
-      </tr>
-      {% endfor %}
-  </tbody>
-</table>
-
-
           
 {% endblock %}

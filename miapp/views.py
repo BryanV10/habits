@@ -6,6 +6,7 @@ from .forms import RegistroActividadForm,ActividadForm
 from django.contrib.auth import login,logout
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 import json
+from django.contrib import messages
 
 # Create your views here.
 def inicio(request):
@@ -81,6 +82,7 @@ def agregar_registro_actividad(request):
         form = RegistroActividadForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, 'El registro se ha guardado exitosamente.')
             return redirect('/home')  # Redirige a donde desees después de agregar el registro
     else:
         form = RegistroActividadForm()
